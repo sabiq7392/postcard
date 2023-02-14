@@ -11,8 +11,30 @@ body {
   overflow-x: hidden;
 }
 
+@media (min-width: 1px) { 
+  html {
+    font-size: 70%;
+  }
+}
+@media (min-width: 576px) {
+  html {
+    font-size: 80%;
+  }
+}
+@media (min-width: 768px) {
+  html {
+    font-size: 90%;
+  }
+}
+@media (min-width: 768px) {
+  html {
+    font-size: 100%;
+  }
+}
+
 body {
   color: rgb(var(--foreground-rgb));
+  background: url(/images/background.base.png);
 }
 
 a {

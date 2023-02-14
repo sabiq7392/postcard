@@ -1,0 +1,112 @@
+@font-face {
+  font-family: 'Beacon DA';
+  src: url('/fonts/BeaconDA-Regular.woff2') format('woff2'),
+       url('/fonts/BeaconDA-Regular.woff') format('woff'),
+       url('/fonts/BeaconDA-Regular.otf') format('opentype');
+  font-weight: 400;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Beacon DA';
+  src: url('/fonts/BeaconDA-Medium.woff2') format('woff2'),
+       url('/fonts/BeaconDA-Medium.woff') format('woff'),
+       url('/fonts/BeaconDA-Medium.otf') format('opentype');
+  font-weight: 500;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Beacon DA';
+  src: url('/fonts/BeaconDA-Bold.woff2') format('woff2'),
+       url('/fonts/BeaconDA-Bold.woff') format('woff'),
+       url('/fonts/BeaconDA-Bold.otf') format('opentype');
+  font-weight: 700;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Degular';
+  src: url('/fonts/Degular-Medium.woff2') format('woff2'),
+       url('/fonts/Degular-Medium.woff') format('woff'),
+       url('/fonts/Degular-Medium.otf') format('opentype');
+  font-weight: 500;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Degular';
+  src: url('/fonts/Degular-Semibold.woff2') format('woff2'),
+       url('/fonts/Degular-Semibold.woff') format('woff'),
+       url('/fonts/Degular-Semibold.otf') format('opentype');
+  font-weight: 600;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Degular';
+  src: url('/fonts/Degular-Bold.woff2') format('woff2'),
+       url('/fonts/Degular-Bold.woff') format('woff'),
+       url('/fonts/Degular-Bold.otf') format('opentype');
+  font-weight: 700;
+  font-display: swap;
+}
+
+
+@font-face {
+  font-family: 'Favorit Mono';
+  src: url('/fonts/ABCFavoritMono-Light.woff2') format('woff2'),
+       url('/fonts/ABCFavoritMono-Light.woff') format('woff'),
+       url('/fonts/ABCFavoritMono-Light.otf') format('opentype');
+  font-weight: 300;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Favorit Mono';
+  src: url('/fonts/ABCFavoritMono-LightItalic.woff2') format('woff2'),
+       url('/fonts/ABCFavoritMono-LightItalic.woff') format('woff'),
+       url('/fonts/ABCFavoritMono-LightItalic.otf') format('opentype');
+  font-weight: 300;
+  font-style: italic;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Favorit Mono';
+  src: url('/fonts/ABCFavoritMono-BookItalic.woff2') format('woff2'),
+       url('/fonts/ABCFavoritMono-BookItalic.woff') format('woff'),
+       url('/fonts/ABCFavoritMono-BookItalic.otf') format('opentype');
+  font-weight: 350;
+  font-style: italic;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Favorit Mono';
+  src: url('/fonts/ABCFavoritMono-Regular.woff2') format('woff2'),
+       url('/fonts/ABCFavoritMono-Regular.woff') format('woff'),
+       url('/fonts/ABCFavoritMono-Regular.otf') format('opentype');
+  font-weight: 400;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Favorit Mono';
+  src: url('/fonts/ABCFavoritMono-Medium.woff2') format('woff2'),
+       url('/fonts/ABCFavoritMono-Medium.woff') format('woff'),
+       url('/fonts/ABCFavoritMono-Medium.otf') format('opentype');
+  font-weight: 500;
+  font-display: swap;
+}
+
+
+@font-face {
+  font-family: 'IBMPlexSerif';
+  src: url('/fonts/IBMPlexSerif-Light.woff2') format('woff2'),
+       url('/fonts/IBMPlexSerif-Light.woff') format('woff'),
+       url('/fonts/IBMPlexSerif-Light.otf') format('opentype');
+  font-weight: 300;
+  font-display: swap;
+}
+
+
+@font-face {
+  font-family: 'Financier Display';
+  src: url('/fonts/FinancierDisplayWeb-Light.woff2') format('woff2'),
+       url('/fonts/FinancierDisplay-Light.otf') format('opentype');
+  font-weight: 300;
+  font-display: swap;
+}

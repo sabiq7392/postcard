@@ -3,8 +3,8 @@ import { ServiceImportantConfig } from "..";
 
 export abstract class ServiceRecommendationConfigProps {
   abstract GetList: {
-    query?: {
-      query?: string
+    query: {
+      query: string
     }
   }
 }

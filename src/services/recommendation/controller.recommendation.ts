@@ -1,6 +1,6 @@
 import useSWR from "swr";
 import ServiceRecommendationConfig, { ServiceRecommendationConfigProps } from "./config.recommendation";
-import axios, { AxiosResponse } from "axios";
+import axios, { Axios, AxiosResponse } from "axios";
 import { ServiceImportantConfig } from "..";
 import ServiceRecommendationModel from "./model.recommendation";
 
@@ -13,7 +13,10 @@ const ServiceRecommendationController = {
   useGetList (props: ServiceRecommendationConfigProps["GetList"]) {
     const response = useSWR(
       ServiceRecommendationConfig.GetList(props), 
-      (key) => fetcher<ServiceRecommendationModel["GetList"]>(key)
+      (key) => {
+        if (!props.query?.query) return null;
+        return fetcher<ServiceRecommendationModel["GetList"]>(key)
+      }
     );
 
     return {
@@ -23,6 +26,18 @@ const ServiceRecommendationController = {
       isValidating: response.isValidating,
       mutate: response.mutate,
     };
+  },
+
+  async GetList(props: ServiceRecommendationConfigProps["GetList"]) {
+    try {
+      const response: AxiosResponse<ServiceRecommendationModel["GetList"]> | undefined = (
+        await axios(ServiceRecommendationConfig.GetList(props))
+      );
+
+      return response;
+    } catch (error) {
+      console.error(error);
+    }
   },
 };
 

@@ -1,10 +1,3 @@
-// import './globals.css';
-"use client"
-import imageConfig from '../../image.config';
-import Logo from '@/components/logos';
-// import css from 'styled-jsx/css';
-import { css } from '@emotion/css';
-
 export default function RootLayout({
   children,
 }: {

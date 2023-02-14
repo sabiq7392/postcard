@@ -1,0 +1,3 @@
+/**
+ * @author Sabiq Muhammad Antebing Mame || github: sabiq7392 || gmail.com: sabiqmuhammad98 || mame-styled.vercel.app
+ */

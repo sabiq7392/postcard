@@ -1,3 +1,46 @@
 {
-  "extends": "next/core-web-vitals"
+  "extends": [
+    "next/core-web-vitals",
+    "eslint:recommended",
+    "plugin:react/recommended",
+    "plugin:@typescript-eslint/recommended"
+  ],
+  "plugins": [
+    "react",
+    "react-hooks",
+    "@typescript-eslint"
+  ],
+  "rules": {
+    "indent": [
+      "warn",
+      2
+    ],
+    "no-extra-semi": "warn",
+    "no-unused-vars": "warn",
+    "quotes": [
+      "warn",
+      "double"
+    ],
+    "react/jsx-key": "warn",
+    "react/prop-types": "off",
+    "semi": [
+      "warn",
+      "always"
+    ],
+    "react/react-in-jsx-scope": "off",
+    "react-hooks/rules-of-hooks": "warn",
+    "react-hooks/exhaustive-deps": "warn",
+    "comma-dangle": ["warn", "always-multiline"],
+    "no-console": [
+      "warn",
+      { "allow": ["clear", "info", "error", "dir", "trace", "warn"] }
+    ],
+    "no-var": "off",
+    "comma-spacing": "warn",
+    "object-curly-spacing": ["warn", "always"],
+    "react/no-children-prop": ["off"],
+    "import/no-anonymous-default-export": "off",
+    "@next/next/no-img-element": "off",
+    "@typescript-eslint/no-empty-function": "warn"
+  }
 }
