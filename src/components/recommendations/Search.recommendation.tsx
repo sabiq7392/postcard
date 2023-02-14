@@ -40,18 +40,12 @@ export default function SearchRecommendation(): ReactElement {
 
   return (
     <>
-      <Content.Container className={css`
-        display: grid;
-        place-items: center;
-        min-height: 100vh;
-      `}>
-        <Div className={css`
-          background: white;
-        `}>
+      <Content.Container className={css`display: grid; place-items: center; min-height: 100vh;`}>
+        <Div className={css`background: white;`}>
           {store.loadingStatus === "IDLE" && (
             <Form onFinish={onFinish}>
               <Content.Header className={css({ background: "url(/images/background.dot.png)", padding: "1rem 2rem" })}>
-                <H1 fontSize={"1.5rem"} className={css`font-family: Degular`}>Recommendation</H1>
+                <H1 fontSize={"1.5rem"} className={css`font-family: Degular;`}>Recommendation</H1>
               </Content.Header>
               <Content.Body className={css({ padding: "2rem" })}>
                 <Form.Item name={"query"}>

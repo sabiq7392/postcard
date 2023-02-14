@@ -1,4 +1,4 @@
-"use client"
+"use client";
 
 import { Fragment, ReactElement, useCallback, useEffect, useRef, useState } from "react";
 import { GoogleMap, LoadScript, MarkerF } from "@react-google-maps/api";
@@ -51,10 +51,6 @@ export default function GetRecommendations(props: GetRecommendationsProps): Reac
           lat: store.data?.places[index].lat ?? 0,
           lng: store.data?.places[index].long ?? 0,
         }));
-
-        _place.style.border = "1px solid red";
-      } else {
-        _place.style.border = "1px solid unset";
       }
     });
     
@@ -74,22 +70,20 @@ export default function GetRecommendations(props: GetRecommendationsProps): Reac
   }, [changeCenterMap]);
   
   const onLoad = useCallback((map: GoogleMapProps) => {
-    const bounds = new window.google.maps.LatLngBounds(position);
-    map.fitBounds(bounds);
-  }, [position]);
+    // const bounds = new window.google.maps.LatLngBounds(position);
+    // map.fitBounds(bounds);
+  // }, [position]);
+  }, []);
 
   const onChangePosition = ({ lat, lng }: GoogleMapLatLngLiteral) => {
     setPosition({ lat, lng });
   };
 
   return (
-    <div className={css({ display: props.isLoading ? "none" : "block" })}>
+    <div className={css({ display: props.isLoading ? "none" : "flex" })}>
       <Content.Container ref={listRecommendationContainer} className={css`
-        position: fixed;
-        left: 0;
-        top: 0;
         z-index: 1000;
-        width: 37.335vw;
+        width: 50vw;
         max-width: 510px;
         height: 100vh;
         overflow: scroll;
@@ -120,7 +114,7 @@ export default function GetRecommendations(props: GetRecommendationsProps): Reac
               color: #4E4E53; 
               &::first-letter { font-size: 200% }
             `}>
-              "{store.data?.description}"
+              {store.data?.description}
             </P>
           </Div>
         </Content.Header>
@@ -134,7 +128,7 @@ export default function GetRecommendations(props: GetRecommendationsProps): Reac
                 </Content.Header>
                 <Content.Body>
                   <P className={css`font-family: Beacon DA; font-size: 1rem; color: #808085; line-height: 150%; font-weight: 400;`}>
-                      "{place.description}"
+                    {"\""}{place.description}{"\""}
                   </P>
                 </Content.Body>
               </Content.Section>
@@ -143,7 +137,7 @@ export default function GetRecommendations(props: GetRecommendationsProps): Reac
           ))}
 
         </Content.Body>
-        <Content.Footer>
+        <Content.Footer className={css`height: 100vh`}>
 
         </Content.Footer>
       </Content.Container>
@@ -161,7 +155,9 @@ export default function GetRecommendations(props: GetRecommendationsProps): Reac
         >
           {/* <MarkerF position={position as GoogleMapLatLngLiteral} /> */}
           {store.data?.places.map((place) => (
-            <MarkerF key={place.placeId} position={{ lat: place.lat, lng: place.long }} />
+            <MarkerF key={place.placeId}  position={{ lat: place.lat, lng: place.long }}>
+              <button>asdsa</button>
+            </MarkerF>
           ))}
           {/* <Make */}
         </GoogleMap>
