@@ -1,4 +1,9 @@
-import './globals.css'
+// import './globals.css';
+"use client"
+import imageConfig from '../../image.config';
+import Logo from '@/components/logos';
+// import css from 'styled-jsx/css';
+import { css } from '@emotion/css';
 
 export default function RootLayout({
   children,
@@ -12,7 +17,16 @@ export default function RootLayout({
         head.tsx. Find out more at https://beta.nextjs.org/docs/api-reference/file-conventions/head
       */}
       <head />
-      <body>{children}</body>
+      <body>
+        {/* <aside>
+          <nav className={css`border: 1px solid red;`}>
+            <div style={{ transform: "rotate(90deg)", display: "block", width: "fit-content" }}>
+              <Logo.PostCard />
+            </div>
+          </nav>
+        </aside> */}
+        {children}
+      </body>
     </html>
   )
 }

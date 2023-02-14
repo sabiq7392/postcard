@@ -1,91 +1,72 @@
-import Image from 'next/image'
+"use client";
+import ServiceRecommendationController from "@/services/recommendation/controller.recommendation";
+import "./globals.css"
 import { Inter } from '@next/font/google'
-import styles from './page.module.css'
+import { GoogleMap, LoadScript, MarkerF } from '@react-google-maps/api';
+import { useCallback, useState } from 'react';
+import { useSearchParams } from "next/navigation";
+
+// eslint-disable-next-line no-undef
+type GoogleMapProps = google.maps.Map;
+// eslint-disable-next-line no-undef
+type GoogleMapLatLngLiteral = google.maps.LatLngLiteral;
+// eslint-disable-next-line no-undef
+type GoogleMapAutoComplete = google.maps.places.Autocomplete;
+
+// eslint-disable-next-line no-undef
+type GoogleMapPlaceResult = google.maps.places.PlaceResult;
 
 const inter = Inter({ subsets: ['latin'] })
 
+type Query = {
+  query: string,
+}
+
 export default function Home() {
+  const searchParams = useSearchParams();
+  // searchParams.get("query") as string
+  const recommendation = ServiceRecommendationController.useGetList({ query: { query: "restaurant" } });
+
+  const [center, setCenter] = useState<GoogleMapLatLngLiteral>({
+    lat: -6.208869746866656,
+    lng: 106.84461723387074,
+  });
+  const [position, setPosition] = useState<GoogleMapLatLngLiteral>({     
+    lat: -6.208869746866656,
+    lng: 106.84461723387074,
+  });
+  
+  const onLoad = useCallback((map: GoogleMapProps) => {
+    const bounds = new window.google.maps.LatLngBounds(position);
+    map.fitBounds(bounds);
+    // setMap(map);
+  }, [position]);
+
+  const onChangePosition = ({ lat, lng }: GoogleMapLatLngLiteral) => {
+    setPosition({ lat, lng });
+  };
+
+  console.log(recommendation)
+
   return (
-    <main className={styles.main}>
-      <div className={styles.description}>
-        <p>
-          Get started by editing&nbsp;
-          <code className={styles.code}>src/app/page.tsx</code>
-        </p>
-        <div>
-          <a
-            href="https://vercel.com?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            By{' '}
-            <Image
-              src="/vercel.svg"
-              alt="Vercel Logo"
-              className={styles.vercelLogo}
-              width={100}
-              height={24}
-              priority
-            />
-          </a>
-        </div>
-      </div>
-
-      <div className={styles.center}>
-        <Image
-          className={styles.logo}
-          src="/next.svg"
-          alt="Next.js Logo"
-          width={180}
-          height={37}
-          priority
-        />
-        <div className={styles.thirteen}>
-          <Image src="/thirteen.svg" alt="13" width={40} height={31} priority />
-        </div>
-      </div>
-
-      <div className={styles.grid}>
-        <a
-          href="https://beta.nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
+    <main>
+      <LoadScript
+        googleMapsApiKey={process.env.GOOGLE_MAPS_API_KEY as string}
+      >
+        <GoogleMap
+          mapContainerStyle={{ width: "100vw", height: "100vh" }}
+          center={{ lat: recommendation.data?.places[0].lat ?? 0, lng: recommendation.data?.places[0].long ?? 0 }}
+          zoom={10}
+          onLoad={onLoad}
+          onClick={(e) => onChangePosition({ lat: e.latLng?.lat() as number, lng: e.latLng?.lng() as number })}
         >
-          <h2 className={inter.className}>
-            Docs <span>-&gt;</span>
-          </h2>
-          <p className={inter.className}>
-            Find in-depth information about Next.js features and API.
-          </p>
-        </a>
-
-        <a
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className={inter.className}>
-            Templates <span>-&gt;</span>
-          </h2>
-          <p className={inter.className}>Explore the Next.js 13 playground.</p>
-        </a>
-
-        <a
-          href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className={inter.className}>
-            Deploy <span>-&gt;</span>
-          </h2>
-          <p className={inter.className}>
-            Instantly deploy your Next.js site to a shareable URL with Vercel.
-          </p>
-        </a>
-      </div>
+          {/* <MarkerF position={position as GoogleMapLatLngLiteral} /> */}
+          {recommendation.data?.places.map((place) => (
+            <MarkerF key={place.placeId} position={{ lat: place.lat, lng: place.long }} />
+          ))}
+          {/* <Make */}
+        </GoogleMap>
+      </LoadScript>
     </main>
   )
 }
