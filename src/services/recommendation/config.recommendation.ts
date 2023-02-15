@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import setQueryParams from "@/utils/setQueryParams";
 import { ServiceImportantConfig } from "..";
 
@@ -5,6 +6,7 @@ export abstract class ServiceRecommendationConfigProps {
   abstract GetList: {
     query: {
       query: string
+      smart_geo?: 1 | 0;
     }
   }
 }
