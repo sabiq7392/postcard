@@ -85,6 +85,7 @@ export default function GetRecommendations(props: GetRecommendationsProps): Reac
       <Content.Container ref={listRecommendationContainer} className={css`
         z-index: 1000;
         width: 50vw;
+        min-width: 410px;
         max-width: 510px;
         height: 100vh;
         overflow: scroll;
@@ -133,7 +134,7 @@ export default function GetRecommendations(props: GetRecommendationsProps): Reac
                 </Content.Header>
                 <Content.Body>
                   <P className={css`font-family: Beacon DA; font-size: 1rem; color: #808085; line-height: 150%; font-weight: 400; margin-bottom: 1.875rem;`}>
-                    {"\""}{place.description}{"\""}
+                    {"\""}{place?.description ?? "-"}{"\""}
                   </P>
                   {place.media.map((_media, index) => (
                     <Img key={index} src={_media.url} alt={_media.credit} width={"100%"} style={{ aspectRatio: "4 / 3" }} />

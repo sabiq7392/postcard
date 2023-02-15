@@ -31,24 +31,19 @@ export default function SearchRecommendation(): ReactElement {
     store.setQuery(values.query);
     store.setLoadingStatus("LOADING");
 
-    console.log(values)
-
     const recomendations = await ServiceRecommendationController.GetList({ query: { query: values.query, smart_geo: values.smart_geo === true ? 1 : 0 } });
 
-    if (!recomendations?.data)  {
+    if (!recomendations?.data || !recomendations)  {
       store.setLoadingStatus("ERROR");
-      message.error("Fail to search, please try again");
+      message.error("There is no any place found");
 
-      setTimeout(() => {
-        store.setLoadingStatus("IDLE");
-      }, 500);
+      // setTimeout(() => {
+      //   store.setLoadingStatus("IDLE");
+      // }, 500);
     } else {
       store.setData(recomendations?.data ?? null);
       store.setLoadingStatus("SUCCESS");
     }
-  };
-
-  const onChange = (checked: boolean) => {
   };
 
   const onSetPrompt = (value: string) => {
@@ -62,7 +57,7 @@ export default function SearchRecommendation(): ReactElement {
         <Div>
           {store.loadingStatus === "IDLE" && (
             <Form onFinish={onFinish} className={css`display: grid; width: 70vw; min-width: 300px; max-width: 800px;`}>
-              <Img src={"/images/loading.svg"} alt="loading" className={css`margin: auto;`} />
+              <Img src={"/images/loading.svg"} alt="loading" className={css`margin: auto; rotate: 90deg;`} />
               <Div className={css`padding: 1.875rem; margin-top: 3rem;`}>
                 <Content.Header>
                   <H1 fontSize={"2rem"} className={css`font-family: Degular; color: white;`}>What are you looking for?</H1>
@@ -118,13 +113,26 @@ export default function SearchRecommendation(): ReactElement {
                 height={120} 
                 className={css`margin-bottom: 3.25rem`}
               />
-              <P fontSize={"1.125rem"} className={css`margin-bottom: 1rem; font-family: Beacon; color: white;`}>Searching the best places for you...</P>
-              <Small fontSize={"1rem"} className={css`font-family: Beacon; color: #DFDFDF;`}>Our AI is preparing the best places recommendation for you. Please wait a moment</Small>
+              <P fontSize={"1.125rem"} className={css`margin-bottom: 1rem; font-family: Beacon DA; color: white;`}>Searching the best places for you...</P>
+              <Small fontSize={"1rem"} className={css`font-family: Beacon DA; color: #DFDFDF;`}>Our AI is preparing the best places recommendation for you. Please wait a moment</Small>
+            </Div>
+          )}
+
+          {store.loadingStatus === "ERROR" && (
+            <Div className={css`display: grid; width: 70vw; min-width: 300px; max-width: 800px;`}>
+              <Image 
+                src="/images/favicon.svg" 
+                alt="loading" 
+                width={120} 
+                height={120} 
+                className={css`margin-bottom: 3.25rem`}
+              />
+              <P fontSize={"1.125rem"} className={css`margin-bottom: 1rem; font-family: Beacon; color: white;`}>There is no any place found</P>
             </Div>
           )}
         </Div>
         
       </Content.Container>
     </>
-  )
+  );
 }
