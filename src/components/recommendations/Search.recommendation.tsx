@@ -112,7 +112,7 @@ export default function SearchRecommendation(): ReactElement {
               text-align: center;
             `}>
               <Image 
-                src="/images/loading.svg" 
+                src="/images/favicon.svg" 
                 alt="loading" 
                 width={120} 
                 height={120} 
