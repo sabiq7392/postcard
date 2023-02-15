@@ -1,7 +1,7 @@
 "use client"
 
 import { Button, Form, Modal } from "antd";
-import { ReactElement, useState } from "react";
+import { ReactElement, useRef, useState } from "react";
 import { css } from "@emotion/css";
 import { Input } from "antd";
 import ServiceRecommendationController from "@/services/recommendation/controller.recommendation";
@@ -23,6 +23,7 @@ const inter = Inter({
 export default function SearchRecommendation(): ReactElement {
   const store = useStoreRecommendations();
   const router = useRouter();
+  const buttonSubmit = useRef<HTMLButtonElement>(null);
 
   const onFinish = async (values: DTO) => {
     store.setData(null);
@@ -36,7 +37,9 @@ export default function SearchRecommendation(): ReactElement {
       store.setData(recomendations?.data ?? null);
       store.setLoadingStatus("SUCCESS");
     }
-  }
+  };
+
+
 
   return (
     <>
@@ -49,10 +52,15 @@ export default function SearchRecommendation(): ReactElement {
               </Content.Header>
               <Content.Body className={css({ padding: "2rem" })}>
                 <Form.Item name={"query"}>
-                  <Input.TextArea rows={3} className={css`font-size: 2.5rem; font-family: Degular`}  />
+                  <Input.TextArea 
+                    rows={3} 
+                    className={css`font-size: 2.5rem; font-family: Degular`}  
+                    onPressEnter={() => buttonSubmit.current?.click()}
+                    showCount
+                  />
                 </Form.Item>
                 <Form.Item>
-                  <Button shape="round" size="large" htmlType="submit" className={css`font-family: 'Beacon DA';`}>
+                  <Button ref={buttonSubmit} shape="round" size="large" htmlType="submit" className={css`font-family: 'Beacon DA';`}>
                     Recommend Me Places
                   </Button>
                 </Form.Item>

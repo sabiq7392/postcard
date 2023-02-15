@@ -4,7 +4,7 @@ import { Fragment, ReactElement, useCallback, useEffect, useRef, useState } from
 import { GoogleMap, LoadScript, MarkerF } from "@react-google-maps/api";
 import useStoreRecommendations from "./store.recommendation";
 import { css } from "@emotion/css";
-import { Div, H1, H2, Img, P } from "@/styles/MameStyled_V2/core/HtmlTag";
+import { A, Div, H1, H2, Img, P } from "@/styles/MameStyled_V2/core/HtmlTag";
 import { Content } from "@/styles/MameStyled_V2/core/SyntaticSugar";
 
 // eslint-disable-next-line no-undef
@@ -124,7 +124,11 @@ export default function GetRecommendations(props: GetRecommendationsProps): Reac
             <Fragment key={place.placeId}>
               <Content.Section key={place.placeId} className={css`background: #FFFFFF; padding: 1.875rem 3.125rem;` + " " + "list-recommendation__place"}>
                 <Content.Header className={css`margin-bottom: 1.25rem!important;`}>
-                  <H2 className={css`font-family: Degular; font-size: 1.25rem; font-weight: 600;`}>{place.name}</H2>
+                  <A hoverXs={{ color: "#0078E8" }} href={place.url}>
+                    <H2 className={css`font-family: Degular; font-size: 1.25rem; font-weight: 400;`}>
+                      {place.name}
+                    </H2>
+                  </A>
                 </Content.Header>
                 <Content.Body>
                   <P className={css`font-family: Beacon DA; font-size: 1rem; color: #808085; line-height: 150%; font-weight: 400;`}>
