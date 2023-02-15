@@ -166,7 +166,7 @@ export default function GetRecommendations(props: GetRecommendationsProps): Reac
                 position={{ lat: place.lat, lng: place.long }} 
                 mapPaneName={OverlayView.OVERLAY_MOUSE_TARGET}
               >
-                <Button shape="round" style={{ background: "black", color: "white", fontFamily: "Degular" }}>
+                <Button shape="round" style={{ background: "black", color: "white", fontFamily: "Degular", transform: "translateY(-35px) translateX(15px)" }}>
                   {place.name}
                 </Button>
               </OverlayView>
