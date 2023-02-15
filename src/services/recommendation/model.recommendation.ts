@@ -15,4 +15,8 @@ export type GetListPlace = {
   gmaps: string,
   lat: number,
   long: number,
+  media: Array<{
+    url: string,
+    credit: string,
+  }>
 };

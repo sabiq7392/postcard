@@ -1,11 +1,12 @@
 "use client";
 
-import { Fragment, ReactElement, useCallback, useEffect, useRef, useState } from "react";
-import { GoogleMap, LoadScript, MarkerF } from "@react-google-maps/api";
+import { Fragment, ReactElement, useCallback, useEffect, useMemo, useRef, useState } from "react";
+import { GoogleMap, LoadScript, MarkerF, OverlayView } from "@react-google-maps/api";
 import useStoreRecommendations from "./store.recommendation";
 import { css } from "@emotion/css";
 import { A, Div, H1, H2, Img, P } from "@/styles/MameStyled_V2/core/HtmlTag";
 import { Content } from "@/styles/MameStyled_V2/core/SyntaticSugar";
+import { Button } from "antd";
 
 // eslint-disable-next-line no-undef
 type GoogleMapProps = google.maps.Map;
@@ -45,7 +46,7 @@ export default function GetRecommendations(props: GetRecommendationsProps): Reac
       const placeOffsetTop = _place.offsetTop;
       const containerScrollTop = listRecommendationContainer.current?.scrollTop ?? 0;
 
-      if ((containerScrollTop - 50) >= placeOffsetTop) {
+      if ((containerScrollTop + 20) >= placeOffsetTop) {
         setCenter( (center) => ({
           ...center,
           lat: store.data?.places[index].lat ?? 0,
@@ -131,9 +132,12 @@ export default function GetRecommendations(props: GetRecommendationsProps): Reac
                   </A>
                 </Content.Header>
                 <Content.Body>
-                  <P className={css`font-family: Beacon DA; font-size: 1rem; color: #808085; line-height: 150%; font-weight: 400;`}>
+                  <P className={css`font-family: Beacon DA; font-size: 1rem; color: #808085; line-height: 150%; font-weight: 400; margin-bottom: 1.875rem;`}>
                     {"\""}{place.description}{"\""}
                   </P>
+                  {place.media.map((_media, index) => (
+                    <Img key={index} src={_media.url} alt={_media.credit} width={"100%"} style={{ aspectRatio: "4 / 3" }} />
+                  ))}
                 </Content.Body>
               </Content.Section>
               <Div className={css`height: 2px; background: #DEDEDE; width: 100%;`} />
@@ -154,16 +158,24 @@ export default function GetRecommendations(props: GetRecommendationsProps): Reac
           center={center ?? { lat: store.data?.places[0].lat ?? 0, lng: store.data?.places[0].long ?? 0 }}
           zoom={15}
           onLoad={onLoad}
-          
           onClick={(e) => onChangePosition({ lat: e.latLng?.lat() as number, lng: e.latLng?.lng() as number })}
         >
-          {/* <MarkerF position={position as GoogleMapLatLngLiteral} /> */}
           {store.data?.places.map((place) => (
-            <MarkerF key={place.placeId}  position={{ lat: place.lat, lng: place.long }}>
-              <button>asdsa</button>
-            </MarkerF>
+            <Fragment key={place.placeId}>
+              <OverlayView
+                position={{ lat: place.lat, lng: place.long }} 
+                mapPaneName={OverlayView.OVERLAY_MOUSE_TARGET}
+              >
+                <Button shape="round" style={{ background: "black", color: "white", fontFamily: "Degular" }}>
+                  {place.name}
+                </Button>
+              </OverlayView>
+              <MarkerF 
+                key={place.placeId}  
+                position={{ lat: place.lat, lng: place.long }} 
+              />
+            </Fragment>
           ))}
-          {/* <Make */}
         </GoogleMap>
       </LoadScript>
     </div>

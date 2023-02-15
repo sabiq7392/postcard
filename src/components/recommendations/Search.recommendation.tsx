@@ -56,7 +56,6 @@ export default function SearchRecommendation(): ReactElement {
                     rows={3} 
                     className={css`font-size: 2.5rem; font-family: Degular`}  
                     onPressEnter={() => buttonSubmit.current?.click()}
-                    showCount
                   />
                 </Form.Item>
                 <Form.Item>
