@@ -113,8 +113,8 @@ export default function SearchRecommendation(): ReactElement {
                 height={120} 
                 className={css`margin-bottom: 3.25rem`}
               />
-              <P fontSize={"1.125rem"} className={css`margin-bottom: 1rem; font-family: Beacon DA; color: white;`}>Searching the best places for you...</P>
-              <Small fontSize={"1rem"} className={css`font-family: Beacon DA; color: #DFDFDF;`}>Our AI is preparing the best places recommendation for you. Please wait a moment</Small>
+              <P fontSize={"2rem"} className={css`margin-bottom: 1rem; font-family: Beacon DA; color: white;`}>Searching the best places for you...</P>
+              <Small fontSize={"1.375rem"} className={css`font-family: Beacon DA; color: #DFDFDF;`}>Our AI is preparing the best places recommendation for you. Please wait a moment</Small>
             </Div>
           )}
 
@@ -127,7 +127,7 @@ export default function SearchRecommendation(): ReactElement {
                 height={120} 
                 className={css`margin-bottom: 3.25rem`}
               />
-              <P fontSize={"1.125rem"} className={css`margin-bottom: 1rem; font-family: Beacon; color: white;`}>There is no any place found</P>
+              <P fontSize={"2rem"} className={css`margin-bottom: 1rem; font-family: Beacon; color: white;`}>There is no any place found</P>
             </Div>
           )}
         </Div>
